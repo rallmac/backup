@@ -1,0 +1,13 @@
+#!/bin/bash
+
+rm /etc/nginx/sites-enabled/default
+rm /etc/nginx/sites-enabled/app.conf
+echo "old configuration files removed"
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
+echo "new configuration files created"
+
+nginx -t
+systemctl restart nginx
+systemctl status nginx
+
